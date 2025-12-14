@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { A11yDialog } from "./_components/dialog";
@@ -19,17 +20,17 @@ const languageOptions = [
 
 export default function Sample() {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
-  const handleLogin = (data: LoginFormValues) => {
-    console.log("ログイン情報:", data);
-    setIsOpen(false);
+  const handleLogin = () => {
+    router.push("/sample-complete");
   };
 
   return (
     <div>
       <div role="banner">
         <A11yButton onClick={() => setIsOpen(true)}>
-          ログイン
+          ログインダイアログを開く
         </A11yButton>
       </div>
       <div role="main">
@@ -47,7 +48,7 @@ export default function Sample() {
   );
 }
 
-const LoginForm = ({ onSubmit }: { onSubmit: (data: LoginFormValues) => void }) => {
+const LoginForm = ({ onSubmit }: { onSubmit: () => void }) => {
   const {
     register,
     handleSubmit,
@@ -57,7 +58,7 @@ const LoginForm = ({ onSubmit }: { onSubmit: (data: LoginFormValues) => void }) 
   });
 
   return (
-    <A11yForm onSubmit={() => handleSubmit(onSubmit)()} ariaLabel="ログインフォーム">
+    <A11yForm onSubmit={handleSubmit(onSubmit)} ariaLabel="ログインフォーム">
       <A11yInput
         label="メールアドレス"
         type="email"
