@@ -20,8 +20,8 @@ export const A11yInput = forwardRef<HTMLInputElement, A11yInputProps>(
         {label && <label htmlFor={formId}>{label}</label>}
         <input
           {...rest}
-          id={formId}
           ref={ref}
+          id={formId}
           aria-invalid={hasError || undefined}
           aria-describedby={errorText ? errorId : undefined}
         />

@@ -22,14 +22,15 @@ export const A11ySelect = forwardRef<HTMLSelectElement, A11ySelectProps>(
     const hasError = Boolean(errorText);
 
     return (
-      <div>
-        {label && <label htmlFor={formId}>{label}</label>}
+      <div className="mb-4">
+        {label && <label htmlFor={formId} className="block text-sm font-medium text-gray-700 mb-1">{label}</label>}
         <select
           {...rest}
           ref={ref}
           id={formId}
           aria-invalid={hasError || undefined}
           aria-describedby={errorText ? errorId : undefined}
+          className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white ${hasError ? "border-red-500" : "border-gray-300"} ${rest.className ?? ""}`}
         >
           <option value="">選択してください</option>
           {options.map((option) => (

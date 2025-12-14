@@ -27,13 +27,13 @@ export default function Sample() {
   };
 
   return (
-    <div>
-      <div role="banner">
+    <div className="min-h-screen bg-gray-50">
+      <div role="banner" className="bg-white shadow-sm border-b border-gray-200 px-4 py-4 flex justify-between items-center">
         <A11yButton onClick={() => setIsOpen(true)}>
           ログインダイアログを開く
         </A11yButton>
       </div>
-      <div role="main">
+      <div role="main" className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
         <LoginForm onSubmit={handleLogin} />
       </div>
       {/* <div role="contentinfo">フッターはここ</div> */}
