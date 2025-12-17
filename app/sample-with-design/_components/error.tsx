@@ -9,9 +9,14 @@ export const A11yError = ({ errorText, ...rest }: A11yErrorProps) => {
       {...rest}
       aria-live='polite'
       aria-atomic
-      className={`text-sm text-red-600 mt-1 ${rest.className ?? ""} ${errorText ? "" : "hidden"}`}
+      className={`text-sm text-red-600 mt-1 ${rest.className ?? ""}`}
     >
-      {errorText}
+      {errorText &&
+        <>
+          <span aria-hidden className="mr-1">❗️</span>
+          エラー：{errorText}
+        </>
+      }
     </div>
   );
 };
